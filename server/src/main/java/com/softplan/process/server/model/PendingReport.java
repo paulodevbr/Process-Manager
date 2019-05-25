@@ -1,15 +1,13 @@
 package com.softplan.process.server.model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
 
 @Entity
-public class Report {
+public class PendingReport {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -19,20 +17,18 @@ public class Report {
 
     @Getter
     @Setter
-    private String description;
+    private Boolean pending;
 
     @Getter
     @Setter
-    @JsonIgnore
-    private LocalDateTime dateOfCreation;
-
+    @NotNull
     @ManyToOne
+    private User user;
+
     @Getter
     @Setter
+    @NotNull
+    @ManyToOne
     private LegalProcess legalProcess;
 
-    @ManyToOne
-    @Getter
-    @Setter
-    private User author;
 }

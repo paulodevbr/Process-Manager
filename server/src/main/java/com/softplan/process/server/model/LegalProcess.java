@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-public class User {
+public class LegalProcess {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -20,43 +20,37 @@ public class User {
 
     @Getter
     @Setter
-    private String name;
+    private String title;
 
     @Getter
     @Setter
-    private String email;
-
-    @Getter
-    @Setter
-    private String password;
+    private String description;
 
     @Getter
     @Setter
     @JsonIgnore
     private LocalDateTime dateOfCreation;
 
-
     @ManyToOne
     @Getter
     @Setter
-    private UserGroup userGroup;
+    @JsonIgnore
+    private User author;
 
     @OneToMany
     @Getter
     @Setter
     @JsonIgnore
-    private List<LegalProcess> legalProcessList;
+    private List<Report> reportList;
 
     @OneToMany
     @Getter
     @Setter
     @JsonIgnore
-    private List<PendingReport> pendingReports;
+    private List<User> usersToAccomplish;
 
-//    @OneToMany
-//    @Getter
-//    @Setter
-//    @JsonIgnore
-//    private List<Report> reportList;
-
+    @OneToMany
+    @Getter
+    @Setter
+    private List<PendingReport> pendingReport;
 }
