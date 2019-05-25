@@ -18,6 +18,6 @@ public class JWTAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Usuário ou senha inválidos");
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid email or password");
 	}
 }
