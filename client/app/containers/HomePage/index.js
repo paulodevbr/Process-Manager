@@ -14,47 +14,47 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import {
-  makeSelectRepos,
-  makeSelectLoading,
-  makeSelectError,
-} from 'containers/App/selectors';
-import H2 from 'components/H2';
-import AtPrefix from './AtPrefix';
-import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
-import messages from './messages';
 import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
-import { makeSelectUsername } from './selectors';
+import {changeUsername, loadUsers} from './actions';
+import { makeSelectUsers } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import FormControlIntl from "../../components/FormControlIntl";
+import messages from "../LoginPage/messages";
+import {InputGroup} from "react-bootstrap";
+import FormControl from "react-bootstrap/es/FormControl";
+import {changeEmail} from "../LoginPage/actions";
 
 const key = 'home';
 
 export function HomePage({
-  username,
+  users,
   loading,
   error,
   repos,
-  onSubmitForm,
-  onChangeUsername,
+  loadUsersFunc,
+  onChangeEmail,
 }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
-
-  useEffect(() => {
-    // When initial state username is not null, submit the form to load repos
-    if (username && username.trim().length > 0) onSubmitForm();
-  }, []);
 
   const reposListProps = {
     loading,
     error,
     repos,
   };
+
+  if(users){
+    return (
+      users.map(user => (
+        <div>
+          {user.email}
+        </div>
+      ))
+    );
+  } else {
+    loadUsersFunc();
+  }
 
   return (
     <article>
@@ -66,34 +66,6 @@ export function HomePage({
         />
       </Helmet>
       <div>
-        <CenteredSection>
-          <H2>
-            <FormattedMessage {...messages.startProjectHeader} />
-          </H2>
-          <p>
-            <FormattedMessage {...messages.startProjectMessage} />
-          </p>
-        </CenteredSection>
-        <Section>
-          <H2>
-            <FormattedMessage {...messages.trymeHeader} />
-          </H2>
-          <Form onSubmit={onSubmitForm}>
-            <label htmlFor="username">
-              <FormattedMessage {...messages.trymeMessage} />
-              <AtPrefix>
-                <FormattedMessage {...messages.trymeAtPrefix} />
-              </AtPrefix>
-              <Input
-                id="username"
-                type="text"
-                placeholder="mxstbr"
-                value={username}
-                onChange={onChangeUsername}
-              />
-            </label>
-          </Form>
-        </Section>
       </div>
     </article>
   );
@@ -101,27 +73,15 @@ export function HomePage({
 
 HomePage.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  onSubmitForm: PropTypes.func,
-  username: PropTypes.string,
-  onChangeUsername: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  repos: makeSelectRepos(),
-  username: makeSelectUsername(),
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
+  users: makeSelectUsers(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
-    onSubmitForm: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
-    },
+    loadUsersFunc: () => dispatch(loadUsers()),
   };
 }
 

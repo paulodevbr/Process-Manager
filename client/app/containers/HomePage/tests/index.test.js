@@ -85,7 +85,7 @@ describe('<HomePage />', () => {
         expect(result.onChangeUsername).toBeDefined();
       });
 
-      it('should dispatch changeUsername when called', () => {
+      it('should dispatch changeEmail when called', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
         const username = 'mxstbr';

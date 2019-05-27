@@ -17,7 +17,7 @@ describe('homeReducer', () => {
     expect(homeReducer(undefined, {})).toEqual(expectedResult);
   });
 
-  it('should handle the changeUsername action correctly', () => {
+  it('should handle the changeEmail action correctly', () => {
     const fixture = 'mxstbr';
     const expectedResult = produce(state, draft => {
       draft.username = fixture;

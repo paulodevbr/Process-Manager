@@ -4,16 +4,46 @@
  * Component to manage private routes
  */
 
-import React from 'react';
+import React, {memo} from 'react';
 import {Redirect, Route} from "react-router-dom";
+import {createStructuredSelector} from "reselect";
+import makeSelectLoginPage, {
+  makeSelectAuthenticated,
+  makeSelectEmail,
+  makeSelectPassword,
+  makeSelectWrongAuth
+} from "../../containers/LoginPage/selectors";
+import {changeEmail, changePassword, login} from "../../containers/LoginPage/actions";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import {LoginPage} from "../../containers/LoginPage";
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, login, ...rest }) => (
   <Route {...rest} render={(props) => (
     // TODO: change here to see if the user log in
-    false === true
+    login && login.token
       ? <Component {...props} />
       : <Redirect to='/login' />
   )} />
-)
+);
 
-export default PrivateRoute;
+const mapStateToProps = createStructuredSelector({
+  login: makeSelectLoginPage(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+)(PrivateRoute);
+
+// export default PrivateRoute;

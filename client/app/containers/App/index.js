@@ -11,16 +11,22 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
+import LoginPage from "containers/LoginPage/Loadable";
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
 import GlobalStyle from '../../global-styles';
-import {LoginPage} from "../LoginPage";
+import PrivateRoute from "../../components/PrivateRoute";
+import {createStructuredSelector} from "reselect";
+import {makeSelectUser, makeSelectUserData} from "./selectors";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import {Container, Nav, Navbar} from "react-bootstrap";
 
 const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
+  max-width: calc(1024px + 16px * 2);
   margin: 0 auto;
   display: flex;
   min-height: 100%;
@@ -30,21 +36,19 @@ const AppWrapper = styled.div`
 
 export default function App() {
   return (
-    <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
+    <div>
       <Header />
-      <Switch>
-        <Route path="/login" component={LoginPage}/>
-        <Route exact path="/" component={HomePage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
-      <Footer />
-      <GlobalStyle />
-    </AppWrapper>
+      <AppWrapper>
+        <Switch>
+          <Route path="/login" component={LoginPage}/>
+          <PrivateRoute exact path="/" component={HomePage} />
+          <Route path="" component={NotFoundPage} />
+        </Switch>
+        <Footer />
+        <GlobalStyle />
+      </AppWrapper>
+    </div>
+
   );
 }
+
