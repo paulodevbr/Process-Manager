@@ -16,15 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService service;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<ProcessDTO> getAll() {
-        return new ArrayList<ProcessDTO>();
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public List<User> getAll() {
+        return this.service.getAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

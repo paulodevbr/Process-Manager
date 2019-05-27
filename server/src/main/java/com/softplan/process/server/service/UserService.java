@@ -14,6 +14,10 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
+    public List<User> getAll(){
+        return this.repository.findAll();
+    }
+
     public User getById(final long id){
         return this.repository
                 .findById(id)
