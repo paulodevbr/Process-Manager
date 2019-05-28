@@ -4,6 +4,7 @@ import com.softplan.process.server.exception.UserNotFoundException;
 import com.softplan.process.server.model.User;
 import com.softplan.process.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,16 @@ public class UserService {
         return this.repository
                 .findById(id)
                 .orElseThrow(() -> new UserNotFoundException(" User with id " + id + "was not found"));
+    }
+
+    public User getByEmail(final String email){
+        User user = this.repository
+                .findByEmail(email);
+
+        if (user == null) {
+            throw new UserNotFoundException(" User with email " + email + "was not found");
+        }
+        return user;
     }
 
     public List<User> getAllByGroup(final String group){

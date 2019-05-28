@@ -9,5 +9,5 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_USERS = 'process-manager/home/LOAD_USERS';
-export const LOAD_USERS_SUCCESS = 'process-manager/home/LOAD_USERS_SUCCESS';
+export const LOAD_LIST = 'process-manager/home/LOAD_LIST';
+export const LOAD_LIST_SUCCESS = 'process-manager/home/LOAD_LIST_SUCCESS';

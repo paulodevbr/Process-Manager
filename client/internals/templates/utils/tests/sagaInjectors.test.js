@@ -106,7 +106,7 @@ describe('injectors', () => {
       injectSaga('test', { saga: testSaga, mode: DAEMON });
       ejectSaga('test');
 
-      expect(store.injectedSagas.test.saga).toBe(testSaga);
+      expect(store.injectedSagas.test.loadHomePage).toBe(testSaga);
       process.env.NODE_ENV = originalNodeEnv;
     });
 
@@ -114,7 +114,7 @@ describe('injectors', () => {
       injectSaga('test', { saga: testSaga, mode: DAEMON });
       ejectSaga('test');
 
-      expect(store.injectedSagas.test.saga).toBe(testSaga);
+      expect(store.injectedSagas.test.loadHomePage).toBe(testSaga);
     });
   });
 

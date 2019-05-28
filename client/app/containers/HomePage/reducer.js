@@ -8,20 +8,21 @@
  */
 
 import produce from 'immer';
-import {CHANGE_USERNAME, LOAD_USERS, LOAD_USERS_SUCCESS} from './constants';
+import {LOAD_LIST, LOAD_LIST_SUCCESS} from './constants';
 
 // The initial state of the App
 export const initialState = {
-  users: null,
+  objects: null,
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const homeReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case LOAD_USERS_SUCCESS:
+      case LOAD_LIST:
+      case LOAD_LIST_SUCCESS:
         // Delete prefixed '@' from the github username
-        draft.users = action.users;
+        draft.objects = action.objects;
         break;
     }
   });
