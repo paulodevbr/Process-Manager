@@ -1,8 +1,7 @@
 // import { take, call, put, select } from 'redux-saga/effects';
 import {  call, put, takeLatest, select } from 'redux-saga/effects';
 import { LOGIN} from "./constants";
-import { authFailed, redirect} from "./actions";
-import {loginSuccess,} from "../App/actions";
+import { authFailed, redirect, loginSuccess } from "./actions";
 import * as LoginApi from "../../utils/loginApi.js"
 import * as UserApi from "../../utils/userApi.js"
 import makeSelectLoginPage, {makeSelectEmail, makeSelectPassword} from "./selectors";
@@ -24,20 +23,23 @@ export function* login() {
 
   if(token){
 
-    const completeUser = yield call(UserApi.getByEmail({...userData, token}), '');
-
     try{
-      yield put(loginSuccess({...completeUser, token}));
-    } catch(err) {
-      yield put(authFailed());
-    }
+      const completeUser = yield call(UserApi.getByEmail({...userData, token}), '');
 
-    yield put(redirect(token));
+      try{
+        yield put(loginSuccess({...completeUser, token}));
+        yield put(redirect(token));
+      } catch(err) {
+        console.log(err);
+        yield put(authFailed());
+      }
+    } catch (err) {
+      yield put(authFailed("Não foi possível se conectar com o servidor, tente mais tarde"));
+    }
   } else {
-    yield put(authFailed());
+    yield put(authFailed("Senha ou email incorreto"));
   }
 }
-
 
 export default function* loginPageSaga() {
   // See example in containers/HomePage/saga.js

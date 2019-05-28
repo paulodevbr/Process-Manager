@@ -15,7 +15,7 @@
  *    }
  */
 
-import {LOAD_USERS, LOAD_USERS_SUCCESS} from './constants';
+import {LOAD_LIST, LOAD_LIST_SUCCESS} from './constants';
 
 /**
  * Changes the input field of the form
@@ -24,15 +24,15 @@ import {LOAD_USERS, LOAD_USERS_SUCCESS} from './constants';
  *
  * @return {object} An action object with a type of CHANGE_EMAIL
  */
-export function loadUsers() {
+export function loadList() {
   return {
-    type: LOAD_USERS,
+    type: LOAD_LIST,
   };
 }
 
-export function loadUsersSuccess(users) {
+export function loadListSuccess(objects) {
   return {
-    type: LOAD_USERS_SUCCESS,
-    users,
+    type: LOAD_LIST_SUCCESS,
+    objects,
   };
 }

@@ -4,39 +4,35 @@
  * This is the first thing users see of our App, at the '/' route
  */
 
-import React, { useEffect, memo } from 'react';
+import React, {memo} from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
+import {connect} from 'react-redux';
+import {compose} from 'redux';
+import {createStructuredSelector} from 'reselect';
 
-import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectSaga } from 'utils/injectSaga';
-import { loadRepos } from '../App/actions';
-import {changeUsername, loadUsers} from './actions';
-import { makeSelectUsers } from './selectors';
+import {useInjectReducer} from 'utils/injectReducer';
+import {useInjectSaga} from 'utils/injectSaga';
+import {loadList} from './actions';
+import {makeSelectObjects} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import FormControlIntl from "../../components/FormControlIntl";
-import messages from "../LoginPage/messages";
-import {InputGroup} from "react-bootstrap";
-import FormControl from "react-bootstrap/es/FormControl";
-import {changeEmail} from "../LoginPage/actions";
+import {ListGroup} from "react-bootstrap";
+import UserItem from "../../components/UserItem";
+import makeSelectLoginPage from "../LoginPage/selectors";
+import {ADMIN, FINALIZADOR, TRIADOR} from "./constants";
+import PresentationHome from "../../components/PresentationHome";
 
 const key = 'home';
 
-export function HomePage({
-  users,
-  loading,
-  error,
-  repos,
-  loadUsersFunc,
-  onChangeEmail,
-}) {
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
+export function HomePage({ user,
+                           objects,
+                           loading,
+                           error,
+                           repos,
+                           loadListFunc,
+                         }) {
+  useInjectReducer({key, reducer});
+  useInjectSaga({key, saga});
 
   const reposListProps = {
     loading,
@@ -44,44 +40,51 @@ export function HomePage({
     repos,
   };
 
-  if(users){
-    return (
-      users.map(user => (
-        <div>
-          {user.email}
-        </div>
-      ))
-    );
-  } else {
-    loadUsersFunc();
+  if (!objects && !loading) {
+    loadListFunc();
   }
 
   return (
-    <article>
-      <Helmet>
-        <title>Home Page</title>
-        <meta
-          name="description"
-          content="A React.js Boilerplate application homepage"
-        />
-      </Helmet>
-      <div>
-      </div>
-    </article>
+    <div>
+      <PresentationHome user={user}/>
+      {objects &&
+      (<ListGroup variant="flush">{
+        objects.map(obj => {
+          switch(user.userGroup){
+            case ADMIN:
+              return (<ListGroup.Item key={obj.email}><UserItem user={obj} /></ListGroup.Item>);
+            case TRIADOR:
+              return (<ListGroup.Item key={obj.email}><UserItem user={obj} /></ListGroup.Item>);
+            case FINALIZADOR:
+              return (<ListGroup.Item key={obj.email}><UserItem user={obj} /></ListGroup.Item>);
+            default:
+              return (<div></div>);
+          }
+        }
+        )
+      }
+      </ListGroup>)
+      }
+    </div>
+
   );
 }
 
 HomePage.propTypes = {
   loading: PropTypes.bool,
+  loadListFunc: PropTypes.func,
+  objects: PropTypes.array,
 };
 
 const mapStateToProps = createStructuredSelector({
-  users: makeSelectUsers(),
+  objects: makeSelectObjects(),
+  user: makeSelectLoginPage(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
-    loadUsersFunc: () => dispatch(loadUsers()),
+    loadListFunc: () => dispatch(loadList()),
+    dispatch,
   };
 }
 

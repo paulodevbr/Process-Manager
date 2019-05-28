@@ -3,26 +3,29 @@
  */
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
-import * as UserApi from 'utils/userApi';
-import request from 'utils/request';
-import { makeSelectUsername } from 'containers/HomePage/selectors';
-import {LOAD_USERS} from "./constants";
-import {SERVER_URL} from "../../utils/constants";
-import {loadUsersSuccess} from "./actions";
+import * as UserApi from '../../utils/userApi';
+import {LOAD_LIST} from "./constants";
+import {loadListSuccess} from "./actions";
+import makeSelectLoginPage from "../LoginPage/selectors";
+
 
 /**
  * Github repos request/response handler
  */
-export function* loadUsers() {
+export function* loadListObjects() {
   // Select username from store
   // const username = yield select(makeSelectUsername());
   try {
     // Call our request helper (see 'utils/request')
-    const users = yield call(UserApi.getAll, '');
-    yield put(loadUsersSuccess(users));
+    const loginData = yield select(makeSelectLoginPage());
+    const { token } = loginData;
+
+    console.log(loginData);
+    const objects = yield call(UserApi.getAll({ token }), '');
+    yield put(loadListSuccess(objects));
   } catch (err) {
+    console.log(err);
     yield put(repoLoadingError(err));
   }
 }
@@ -31,9 +34,9 @@ export function* loadUsers() {
  * Root saga manages watcher lifecycle
  */
 export default function* githubData() {
-  // Watches for LOAD_REPOS actions and calls loadUsers when one comes in.
+  // Watches for LOAD_REPOS actions and calls loadListObjects when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield takeLatest(LOAD_USERS, loadUsers);
+  yield takeLatest(LOAD_LIST, loadListObjects);
 }

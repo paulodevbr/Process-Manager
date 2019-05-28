@@ -1,6 +1,6 @@
 {
-  "boilerplate.components.Footer.author.message": "",
-  "boilerplate.components.Footer.license.message": "",
+  "boilerplate.components.Footer.author.message": "Feito por {author} .",
+  "boilerplate.components.Footer.license.message": "Este projeto está licenciado sob a MIT license.",
   "boilerplate.components.Header.features": "",
   "boilerplate.components.Header.home": "",
   "boilerplate.containers.FeaturePage.css.header": "",

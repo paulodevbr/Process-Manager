@@ -17,7 +17,7 @@ import makeSelectLoginPage, {
   makeSelectAuthenticated,
   makeSelectEmail,
   makeSelectPassword,
-  makeSelectWrongAuth
+  makeSelectAuthFailed, makeSelectAuthFailedMessage
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -30,7 +30,7 @@ import {Redirect} from "react-router-dom";
 const key = 'login';
 
 
-export function LoginPage({ wrongAuth, authenticated, onChangeEmail, onChangePassword, onLogin}) {
+export function LoginPage({ authFailed, authFailedMessage, authenticated, onChangeEmail, onChangePassword, onLogin}) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -47,8 +47,8 @@ export function LoginPage({ wrongAuth, authenticated, onChangeEmail, onChangePas
         </p>
       </Jumbotron>
 
-      <Alert show={wrongAuth} variant='danger'>
-        <FormattedMessage {...messages.wrongAuth} />
+      <Alert show={authFailed} variant='danger'>
+        {authFailedMessage}
       </Alert>
 
       <label><FormattedMessage {...messages.emailLabel} /></label>
@@ -74,7 +74,7 @@ export function LoginPage({ wrongAuth, authenticated, onChangeEmail, onChangePas
 }
 
 LoginPage.propTypes = {
-  wrongAuth: PropTypes.bool.isRequired,
+  authFailed: PropTypes.bool.isRequired,
   authenticated: PropTypes.bool.isRequired,
   onChangeEmail: PropTypes.func,
   onChangePassword: PropTypes.func,
@@ -84,7 +84,8 @@ LoginPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   email: makeSelectEmail(),
   password: makeSelectPassword(),
-  wrongAuth: makeSelectWrongAuth(),
+  authFailed: makeSelectAuthFailed(),
+  authFailedMessage: makeSelectAuthFailedMessage(),
   authenticated: makeSelectAuthenticated(),
 });
 

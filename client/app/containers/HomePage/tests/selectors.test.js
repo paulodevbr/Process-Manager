@@ -1,4 +1,4 @@
-import { selectHome, makeSelectUsers } from '../selectors';
+import { selectHome, makeSelectObjects } from '../selectors';
 
 describe('selectHome', () => {
   it('should select the home state', () => {
@@ -12,8 +12,8 @@ describe('selectHome', () => {
   });
 });
 
-describe('makeSelectUsers', () => {
-  const usernameSelector = makeSelectUsers();
+describe('makeSelectObjects', () => {
+  const usernameSelector = makeSelectObjects();
   it('should select the username', () => {
     const username = 'mxstbr';
     const mockedState = {

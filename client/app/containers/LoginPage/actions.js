@@ -4,7 +4,7 @@
  *
  */
 
-import {CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN, AUTH_FAILED, REDIRECT} from './constants';
+import {CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN, AUTH_FAILED, REDIRECT, LOGIN_SUCCESS} from './constants';
 
 export function changeEmail(email) {
   return {
@@ -26,9 +26,17 @@ export function login() {
   };
 }
 
-export function authFailed(){
+export function loginSuccess(userData) {
+  return {
+    type: LOGIN_SUCCESS,
+    userData,
+  };
+}
+
+export function authFailed(message){
   return {
     type: AUTH_FAILED,
+    message,
   }
 }
 

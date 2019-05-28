@@ -6,7 +6,7 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import React from 'react';
+import React, {memo} from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
@@ -24,9 +24,11 @@ import {makeSelectUser, makeSelectUserData} from "./selectors";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {Container, Nav, Navbar} from "react-bootstrap";
+import {makeSelectObjects} from "../HomePage/selectors";
+import {loadList} from "../HomePage/actions";
 
 const AppWrapper = styled.div`
-  max-width: calc(1024px + 16px * 2);
+  max-width: calc(900px + 16px * 2);
   margin: 0 auto;
   display: flex;
   min-height: 100%;
@@ -48,7 +50,5 @@ export default function App() {
         <GlobalStyle />
       </AppWrapper>
     </div>
-
   );
 }
-
