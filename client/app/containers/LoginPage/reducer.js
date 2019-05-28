@@ -8,11 +8,14 @@ import {DEFAULT_ACTION, AUTH_FAILED, LOGIN_SUCCESS, REDIRECT} from './constants'
 import {CHANGE_EMAIL, CHANGE_PASSWORD} from "../LoginPage/constants";
 
 export const initialState = {
+  name: "",
   email: "",
   password:"",
   token: "",
-  wrongAuth: false,
+  authFailed: false,
+  authFailedMessage: "",
   authenticated: false,
+  userGroup: "",
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -25,8 +28,16 @@ const loginPageReducer = (state = initialState, action) =>
       case CHANGE_PASSWORD:
         draft.password = action.password;
         break;
+      case LOGIN_SUCCESS:
+        draft.name = action.userData.name;
+        draft.email = action.userData.email;
+        draft.password = action.userData.password;
+        draft.token = action.userData.token;
+        draft.userGroup = action.userData.userGroup.name;
+        break;
       case AUTH_FAILED:
-        draft.wrongAuth = true;
+        draft.authFailed = true;
+        draft.authFailedMessage = action.message;
         break;
       case REDIRECT:
         draft.authenticated = true;

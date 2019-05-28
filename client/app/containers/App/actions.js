@@ -57,10 +57,3 @@ export function repoLoadingError(error) {
     error,
   };
 }
-
-export function loginSuccess(userData) {
-  return {
-    type: LOGIN_SUCCESS,
-    userData,
-  };
-}

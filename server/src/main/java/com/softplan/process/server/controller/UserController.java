@@ -22,7 +22,7 @@ public class UserController {
     private UserService service;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasUserGroup('ADMIN')")
     public List<User> getAll() {
         return this.service.getAll();
     }

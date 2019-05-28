@@ -1,6 +1,6 @@
 {
-  "boilerplate.components.Footer.author.message": "",
-  "boilerplate.components.Footer.license.message": "",
+  "boilerplate.components.Footer.author.message": "Feito por {author} .",
+  "boilerplate.components.Footer.license.message": "Este projeto está licenciado sob a MIT license.",
   "boilerplate.components.Header.features": "",
   "boilerplate.components.Header.home": "",
   "boilerplate.containers.FeaturePage.css.header": "",
@@ -28,10 +28,10 @@
   "boilerplate.containers.LocaleToggle.de": "",
   "boilerplate.containers.LocaleToggle.en": "",
   "boilerplate.containers.NotFoundPage.header": "",
-  "app.containers.LoginPage.email.label": "Email",
-  "app.containers.LoginPage.email.description": "Endereço de email",
-  "app.containers.LoginPage.password.label": "Senha",
-  "app.containers.LoginPage.password.description": "Entre com sua senha",
+  "app.components.input.email.label": "Email",
+  "app.components.input.email.description": "exemplo@gmail.com",
+  "app.components.input.password.label": "Senha",
+  "app.components.input.password.description": "Digite a senha",
   "app.containers.LoginPage.submit.button": "Entrar",
   "app.containers.LoginPage.wrongAuth": "Senha ou email invalido"
 }

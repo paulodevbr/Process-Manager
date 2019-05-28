@@ -32,10 +32,16 @@ const makeSelectLoginPage = () =>
     substate => substate,
   );
 
-const makeSelectWrongAuth = () =>
+const makeSelectAuthFailed = () =>
   createSelector(
     selectLoginPageDomain,
-    substate => substate.wrongAuth,
+    substate => substate.authFailed,
+  );
+
+const makeSelectAuthFailedMessage = () =>
+  createSelector(
+    selectLoginPageDomain,
+    substate => substate.authFailedMessage,
   );
 
 const makeSelectAuthenticated = () =>
@@ -45,4 +51,4 @@ const makeSelectAuthenticated = () =>
   );
 
 export default makeSelectLoginPage;
-export {selectLoginPageDomain, makeSelectPassword, makeSelectEmail, makeSelectWrongAuth, makeSelectAuthenticated};
+export {selectLoginPageDomain, makeSelectPassword, makeSelectEmail, makeSelectAuthFailed, makeSelectAuthenticated, makeSelectAuthFailedMessage};

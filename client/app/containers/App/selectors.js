@@ -54,7 +54,7 @@ const makeSelectUserData = () => {
 };
 
 export {
-  selectGlobal,
+  // selectGlobal,
   makeSelectCurrentUser,
   makeSelectLoading,
   makeSelectError,

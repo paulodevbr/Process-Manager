@@ -11,7 +11,7 @@ import makeSelectLoginPage, {
   makeSelectAuthenticated,
   makeSelectEmail,
   makeSelectPassword,
-  makeSelectWrongAuth
+  makeSelectAuthFailed
 } from "../../containers/LoginPage/selectors";
 import {changeEmail, changePassword, login} from "../../containers/LoginPage/actions";
 import {connect} from "react-redux";

@@ -43,12 +43,6 @@ const appReducer = (state = initialState, action) =>
         draft.error = action.error;
         draft.loading = false;
         break;
-      case LOGIN_SUCCESS:
-        draft.userData.email = action.userData.email;
-        draft.userData.password = action.userData.password;
-        draft.userData.token = action.userData.token;
-        draft.userData.userGroup = action.userData.userGroup.name;
-        break;
     }
   });
 

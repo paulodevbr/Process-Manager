@@ -8,7 +8,7 @@ import * as UserApi from '../../utils/userApi';
 import {LOAD_LIST} from "./constants";
 import {loadListSuccess} from "./actions";
 import makeSelectLoginPage from "../LoginPage/selectors";
-import {makeSelectUser} from "../App/selectors";
+
 
 /**
  * Github repos request/response handler
@@ -18,7 +18,7 @@ export function* loadListObjects() {
   // const username = yield select(makeSelectUsername());
   try {
     // Call our request helper (see 'utils/request')
-    const loginData = yield select(makeSelectUser());
+    const loginData = yield select(makeSelectLoginPage());
     const { token } = loginData;
 
     console.log(loginData);

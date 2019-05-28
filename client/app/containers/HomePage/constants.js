@@ -9,5 +9,11 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
+import {Badge} from "react-bootstrap";
+
 export const LOAD_LIST = 'process-manager/home/LOAD_LIST';
 export const LOAD_LIST_SUCCESS = 'process-manager/home/LOAD_LIST_SUCCESS';
+export const ADMIN = 'ADMIN';
+export const TRIADOR = 'TRIADOR';
+export const FINALIZADOR = 'FINALIZADOR';
+
