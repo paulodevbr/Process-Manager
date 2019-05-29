@@ -7,11 +7,13 @@ import {Button} from "react-bootstrap";
 const PageActionButton = ({user}) => {
   switch(user.userGroup){
     case ADMIN:
-      return <Button variant="primary"><FormattedMessage {...messages.adminButton}/></Button>;
+      return <Button variant="primary"><FormattedMessage {...messages.adminFormTitle}/></Button>;
     case TRIADOR:
       return <Button variant="primary"><FormattedMessage {...nessages.triadorButton}/></Button>;
     case FINALIZADOR:
       return <div></div>;
+    default:
+      return <div></div>
   }
 };
 

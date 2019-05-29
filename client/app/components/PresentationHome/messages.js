@@ -16,7 +16,7 @@ export default defineMessages({
     id: `${scope}.admin.details`,
     defaultMessage: '"Here you can create, edit, update and delete users"',
   },
-  adminButton: {
+  adminFormTitle: {
     id: `${scope}.admin.button`,
     defaultMessage: 'Create user',
   },

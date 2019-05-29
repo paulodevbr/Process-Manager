@@ -11,6 +11,8 @@ const PageDetails = ({user}) => {
       return <FormattedMessage {...nessages.triadorDetails}/>;
     case FINALIZADOR:
       return <FormattedMessage {...messages.finalizadorDetails} />
+    default:
+      return "";
   }
 };
 

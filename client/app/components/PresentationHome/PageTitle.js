@@ -11,6 +11,8 @@ const PageTitle = ({user}) => {
       return <FormattedMessage {...messages.triadorTitle}/>;
     case FINALIZADOR:
       return <FormattedMessage {...messages.finalizadorTitle} />
+    default:
+      return <div></div>
   }
 };
 
