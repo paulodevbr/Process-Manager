@@ -9,3 +9,4 @@
 
 rootProject.name = 'legalProcess-manager'
 include 'server'
+include 'client'
