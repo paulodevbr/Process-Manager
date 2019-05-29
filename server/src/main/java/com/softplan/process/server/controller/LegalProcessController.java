@@ -17,15 +17,23 @@ import java.util.List;
 @RequestMapping("/process")
 public class LegalProcessController {
 
-    @Autowired
-    private LegalProcessService service;
+    private final LegalProcessService service;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public LegalProcessController(LegalProcessService service) {
+        this.service = service;
+    }
+
+    @GetMapping(value = "/list")
     public List<LegalProcessCompactDTO> getAll() {
         return this.service.getAll();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @PostMapping(value = "/")
+    public LegalProcess create(@RequestBody LegalProcess process) {
+        return this.service.create(process);
+    }
+
+    @GetMapping(value = "/{id}")
     public ResponseEntity<LegalProcess> getProcessById(@PathVariable int id) {
         ResponseEntity<LegalProcess> response;
 

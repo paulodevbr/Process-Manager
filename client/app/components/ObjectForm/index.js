@@ -9,10 +9,13 @@ import PropTypes from 'prop-types';
 
 import {Card} from "react-bootstrap";
 import mapUsers from "./MapUsers";
+import {ADMIN} from "../../containers/HomePage/constants";
+import Button from "react-bootstrap/Button";
+import {Link} from "react-router-dom";
 
 function ObjectForm({login}) {
 
-  if(login && login.userGroup){
+  if(login && login.userGroup && login.userGroup === ADMIN){
     return (
       <div>
         <Card>

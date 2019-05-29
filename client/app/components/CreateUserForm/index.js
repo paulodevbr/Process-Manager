@@ -48,7 +48,7 @@ function CreateUserForm({
       <Row>
         <Col sm={12} md={6}>
           <label><FormattedMessage {...messages.nameLabel} /></label>
-          <FormControlIntl type="text" value={name} onChange={onChangeName} details={messages.nameDescription}/>
+          <FormControlIntl required type="text" value={name} onChange={onChangeName} details={messages.nameDescription}/>
         </Col>
         <Col sm={12} md={6}>
           <label><FormattedMessage {...messages.emailLabel} /></label>
@@ -78,7 +78,7 @@ function CreateUserForm({
       <Row>
         <Col>
           <InputGroup>
-            <Button variant="primary" onClick={onCreateObject}>Create user</Button>
+            <Button variant="success" onClick={onCreateObject}>Create user</Button>
           </InputGroup>
         </Col>
       </Row>

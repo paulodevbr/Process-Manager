@@ -17,13 +17,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/login")
 public class AuthController {
 	
-	@Autowired
-    private AuthenticationManager authenticationManager;
+	private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private TokenProvider jwtTokenUtil;
+    private final TokenProvider jwtTokenUtil;
 
-    @RequestMapping(method = RequestMethod.POST)
+    public AuthController(AuthenticationManager authenticationManager, TokenProvider jwtTokenUtil) {
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
+    }
+
+    @PostMapping
     public ResponseEntity<AuthToken> register(@RequestBody UserLogin userLogin) throws AuthenticationException {
 
         final Authentication authentication = authenticationManager.authenticate(

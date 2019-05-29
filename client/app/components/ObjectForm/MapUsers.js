@@ -9,7 +9,10 @@ const mapUsers = {
     title: <FormattedMessage {...messages.adminFormTitle}/>,
     form: <CreateUserForm />
   },
-  TRIADOR: {title: <FormattedMessage {...messages.triadorFormTitle}/>},
+  TRIADOR: {
+    title: <FormattedMessage {...messages.triadorFormTitle}/>,
+    form: <div></div>
+    },
 };
 
 export default mapUsers;

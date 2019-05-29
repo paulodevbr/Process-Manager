@@ -19,15 +19,9 @@ function Header({login}) {
       <Navbar expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand><FormattedMessage {...messages.appName} /></Navbar.Brand>
-          <Nav className="mr-auto">
-            <Link to="/">
-              <Navbar.Text style={{fontSize: 16}}>
-                Home
-              </Navbar.Text>
-            </Link>
-          </Nav>
+          <Navbar.Toggle aria-controls="navbar-nav-login" />
           {login.authenticated && (
-            <Navbar.Collapse className="justify-content-end">
+            <Navbar.Collapse id="navbar-nav-login" className="justify-content-end">
               <Navbar.Text style={{fontSize: 12}}>
                 Signed in as: {login.name}
               </Navbar.Text>

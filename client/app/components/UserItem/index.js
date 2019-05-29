@@ -20,7 +20,7 @@ function UserItem({user, login, onDelete}) {
       case TRIADOR:
         return (<Badge variant="info">{user.userGroup}</Badge>);
       case FINALIZADOR:
-        return (<Badge variant="success">{user.userGroup}</Badge>);
+        return (<Badge variant="primary">{user.userGroup}</Badge>);
     }
   };
 
@@ -31,15 +31,20 @@ function UserItem({user, login, onDelete}) {
   return (
     <div>
       <Row>
-        <Col><h5>{user.name}</h5></Col>
-      </Row>
-      <Row>
-        <Col md={10} xs={8}><EmailText>{user.email}</EmailText><CustomBadge/></Col>
-        <Col md={2} xs={4}>
+        <Col md={{span: 2, order: 1}} xs={{span: 4, order: 2}}><h6><CustomBadge/></h6></Col>
+        <Col md={{span: 4, order: 2}} xs={{span: 8, order: 1}}><h5>{user.name}</h5></Col>
+        <Col md={{span: 4, order: 3}} xs={{span: 8, order: 3}}><EmailText>{user.email}</EmailText></Col>
+        <Col md={{span: 2, order: 4}} xs={{span: 4, order: 4}}>
           <ButtonGroup>
             <Button variant="light"><i className="fas fa-edit" style={{color: "dark"}}/></Button>
-           <ButtonDelete/>
+            <ButtonDelete/>
           </ButtonGroup></Col>
+      </Row>
+      <Row>
+        {/*<Col md={2}>*/}
+        {/*  <CustomBadge/>*/}
+        {/*</Col>*/}
+
       </Row>
     </div>
   );

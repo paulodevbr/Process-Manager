@@ -17,11 +17,14 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository repository;
+    private final UserRepository repository;
 
-    @Autowired
-    private BCryptPasswordEncoder bcryptEncoder;
+    private final BCryptPasswordEncoder bcryptEncoder;
+
+    public UserService(UserRepository repository, BCryptPasswordEncoder bcryptEncoder) {
+        this.repository = repository;
+        this.bcryptEncoder = bcryptEncoder;
+    }
 
     public List<UserDTO> getAll(){
         return this.repository.findAll().stream().map(UserDTO::new).collect(Collectors.toList());

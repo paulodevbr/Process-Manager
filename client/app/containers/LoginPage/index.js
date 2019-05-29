@@ -52,24 +52,24 @@ export function LoginPage({ authFailed, authFailedMessage, authenticated, onChan
         {authFailedMessage}
       </Alert>
 
-      <label><FormattedMessage {...messages.emailLabel} /></label>
-      <InputGroup>
-        <FormControlIntl type="email" onChange={onChangeEmail} details={messages.emailDescription}/>
-      </InputGroup>
-      <Form.Text className="text-muted">
-        We'll never share your email with anyone else.
-      </Form.Text>
+        <label><FormattedMessage {...messages.emailLabel} /></label>
+        <InputGroup>
+          <FormControlIntl type="email" onChange={onChangeEmail} details={messages.emailDescription}/>
+        </InputGroup>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form.Text>
 
-      <label><FormattedMessage {...messages.passwordLabel} /></label>
-      <InputGroup>
-        <FormControlIntl type="password" details={messages.passwordDescription}
-                         onChange={onChangePassword}/>
-      </InputGroup>
-      <InputGroup>
-        <Button style={{margin: 16}} variant="primary" type="submit" onClick={onLogin}>
-          <FormattedMessage {...messages.submitButton} />
-        </Button>
-      </InputGroup>
+        <label><FormattedMessage {...messages.passwordLabel} /></label>
+        <InputGroup>
+          <FormControlIntl type="password" details={messages.passwordDescription}
+                           onChange={onChangePassword}/>
+        </InputGroup>
+        <InputGroup>
+          <Button style={{margin: 16}} variant="primary" type="submit" onClick={onLogin}>
+            <FormattedMessage {...messages.submitButton} />
+          </Button>
+        </InputGroup>
     </div>
   );
 }

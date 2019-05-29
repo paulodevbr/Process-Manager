@@ -20,15 +20,18 @@ import java.util.stream.Collectors;
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    private UserService service;
+    private final UserService service;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public UserController(UserService service) {
+        this.service = service;
+    }
+
+    @GetMapping(value = "/list")
     public ResponseEntity<List<UserDTO>> getAll() {
         return new ResponseEntity<>(this.service.getAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
+    @GetMapping(value = "/email/{email}")
 //    @PostAuthorize("returnObject.getBody().getEmail() == authentication.principal.username")
     public  ResponseEntity<UserDTO> getByEmail(@PathVariable String email) {
         ResponseEntity<UserDTO> response;
@@ -40,7 +43,7 @@ public class UserController {
         return response;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public ResponseEntity<User> getById(@PathVariable long id) {
         ResponseEntity<User> response;
 
@@ -53,12 +56,12 @@ public class UserController {
         return response;
     }
 
-    @RequestMapping( method = RequestMethod.POST)
+    @PostMapping
     public UserDTO create(@RequestBody UserDTO user) {
         return new UserDTO(this.service.create(user));
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public void create(@PathVariable long id) {
         this.service.delete(id);
     }

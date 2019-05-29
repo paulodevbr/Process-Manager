@@ -12,11 +12,18 @@ import java.util.stream.Collectors;
 
 @Service
 public class LegalProcessService {
-    @Autowired
-    private LegalProcessRepository repository;
+    private final LegalProcessRepository repository;
+
+    public LegalProcessService(LegalProcessRepository repository) {
+        this.repository = repository;
+    }
 
     public List<LegalProcessCompactDTO> getAll(){
         return repository.findAll().stream().map(LegalProcessCompactDTO::new).collect(Collectors.toList());
+    }
+
+    public LegalProcess create(LegalProcess process){
+        return this.repository.save(process);
     }
 
     public LegalProcess getById(final long id){
