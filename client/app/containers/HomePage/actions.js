@@ -15,7 +15,7 @@
  *    }
  */
 
-import {LOAD_LIST, LOAD_LIST_SUCCESS} from './constants';
+import {LOAD_LIST, LOAD_LIST_SUCCESS, SHOW_USER_FORM} from './constants';
 
 /**
  * Changes the input field of the form
@@ -35,4 +35,16 @@ export function loadListSuccess(objects) {
     type: LOAD_LIST_SUCCESS,
     objects,
   };
+}
+
+export function showUserForm(){
+  return {
+    type: SHOW_USER_FORM,
+  }
+}
+
+export function hideUserForm(){
+  return {
+    type: SHOW_USER_FORM,
+  }
 }

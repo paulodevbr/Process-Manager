@@ -13,4 +13,10 @@ const makeSelectObjects = () =>
     homeState => homeState.objects,
   );
 
-export { selectHome, makeSelectObjects };
+const makeSelectStatusUserForm = () =>
+  createSelector(
+    selectHome,
+    homeState => homeState.isCreatingUser,
+  );
+
+export { selectHome, makeSelectObjects, makeSelectStatusUserForm };

@@ -16,7 +16,7 @@ function UserItem({user, login}) {
   const CustomBadge = () => {
     switch(user.userGroup.name){
       case ADMIN:
-        return (<Badge variant="primary">{user.userGroup.name}</Badge>);
+        return (<Badge variant="dark">{user.userGroup.name}</Badge>);
       case TRIADOR:
         return (<Badge variant="secondary">{user.userGroup.name}</Badge>);
       case FINALIZADOR:
@@ -27,15 +27,15 @@ function UserItem({user, login}) {
   return (
     <div>
       <Row>
-        <Col sm={10}><h5>{user.name}</h5><CustomBadge/></Col>
-        <Col sm={2}>
-          <ButtonGroup>
-            <Button variant="secondary"><i class="fas fa-edit" /></Button>
-            <Button variant="secondary"><i className="fas fa-trash"/></Button>
-        </ButtonGroup></Col>
+        <Col><h5>{user.name}</h5></Col>
       </Row>
       <Row>
-        <Col sm={10}><EmailText>{user.email}</EmailText></Col>
+        <Col md={10} xs={8}><EmailText>{user.email}</EmailText><CustomBadge/></Col>
+        <Col md={2} xs={4}>
+          <ButtonGroup>
+            <Button variant="light"><i className="fas fa-edit" style={{color: "dark"}}/></Button>
+            <Button variant="light"><i className="fas fa-trash" style={{color: "red"}}/></Button>
+          </ButtonGroup></Col>
       </Row>
     </div>
   );

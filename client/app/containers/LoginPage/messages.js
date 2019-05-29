@@ -7,6 +7,7 @@
 import { defineMessages } from 'react-intl';
 
 export const scope = 'app.containers.LoginPage';
+export const scopeInput = 'app.components.input';
 
 export default defineMessages({
   header: {
@@ -18,19 +19,19 @@ export default defineMessages({
     defaultMessage: 'Invalid email or password',
   },
   emailLabel: {
-    id: `${scope}.email.label`,
+    id: `${scopeInput}.email.label`,
     defaultMessage: 'Email',
   },
   emailDescription: {
-    id: `${scope}.email.description`,
+    id: `${scopeInput}.email.description`,
     defaultMessage: 'Email address',
   },
   passwordLabel: {
-    id: `${scope}.password.label`,
+    id: `${scopeInput}.password.label`,
     defaultMessage: 'Password',
   },
   passwordDescription: {
-    id: `${scope}.password.description`,
+    id: `${scopeInput}.password.description`,
     defaultMessage: 'Password',
   },
   submitButton: {

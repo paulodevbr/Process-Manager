@@ -8,11 +8,12 @@
  */
 
 import produce from 'immer';
-import {LOAD_LIST, LOAD_LIST_SUCCESS} from './constants';
+import {HIDE_USER_FORM, LOAD_LIST, LOAD_LIST_SUCCESS, SHOW_USER_FORM} from './constants';
 
 // The initial state of the App
 export const initialState = {
   objects: null,
+  isCreatingUser: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -23,6 +24,12 @@ const homeReducer = (state = initialState, action) =>
       case LOAD_LIST_SUCCESS:
         // Delete prefixed '@' from the github username
         draft.objects = action.objects;
+        break;
+      case SHOW_USER_FORM:
+        draft.isCreatingUser = true;
+        break;
+      case HIDE_USER_FORM:
+        draft.isCreatingUser = false;
         break;
     }
   });

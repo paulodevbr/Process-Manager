@@ -13,7 +13,8 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectLoginPage, {
+import {
+  makeSelectLoginPage,
   makeSelectAuthenticated,
   makeSelectEmail,
   makeSelectPassword,

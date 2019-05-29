@@ -21,6 +21,8 @@ import UserItem from "../../components/UserItem";
 import makeSelectLoginPage from "../LoginPage/selectors";
 import {ADMIN, FINALIZADOR, TRIADOR} from "./constants";
 import PresentationHome from "../../components/PresentationHome";
+import CreateUserForm from "../../components/CreateUserForm";
+import ObjectForm from "../../components/ObjectForm";
 
 const key = 'home';
 
@@ -47,8 +49,9 @@ export function HomePage({ user,
   return (
     <div>
       <PresentationHome user={user}/>
+      <ObjectForm user={user}/>
       {objects &&
-      (<ListGroup variant="flush">{
+      (<ListGroup style={{marginTop:16}}>{
         objects.map(obj => {
           switch(user.userGroup){
             case ADMIN:

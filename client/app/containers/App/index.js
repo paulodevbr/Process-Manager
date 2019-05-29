@@ -19,13 +19,6 @@ import Footer from 'components/Footer';
 
 import GlobalStyle from '../../global-styles';
 import PrivateRoute from "../../components/PrivateRoute";
-import {createStructuredSelector} from "reselect";
-import {makeSelectUser, makeSelectUserData} from "./selectors";
-import {connect} from "react-redux";
-import {compose} from "redux";
-import {Container, Nav, Navbar} from "react-bootstrap";
-import {makeSelectObjects} from "../HomePage/selectors";
-import {loadList} from "../HomePage/actions";
 
 const AppWrapper = styled.div`
   max-width: calc(900px + 16px * 2);
