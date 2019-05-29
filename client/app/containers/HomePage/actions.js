@@ -15,7 +15,14 @@
  *    }
  */
 
-import {LOAD_LIST, LOAD_LIST_SUCCESS, SHOW_USER_FORM} from './constants';
+import {
+  CREATE_OBJECT,
+  CREATE_OBJECT_SUCCESS,
+  DELETE_OBJECT,
+  LOAD_LIST,
+  LOAD_LIST_SUCCESS,
+  SHOW_USER_FORM
+} from './constants';
 
 /**
  * Changes the input field of the form
@@ -37,14 +44,22 @@ export function loadListSuccess(objects) {
   };
 }
 
-export function showUserForm(){
+export function createObject(){
   return {
-    type: SHOW_USER_FORM,
+    type: CREATE_OBJECT,
   }
 }
 
-export function hideUserForm(){
+export function createObjectSuccess(object){
   return {
-    type: SHOW_USER_FORM,
+    type: CREATE_OBJECT_SUCCESS,
+    object,
+  }
+}
+
+export function deleteObject(id){
+  return {
+    type: DELETE_OBJECT,
+    id,
   }
 }

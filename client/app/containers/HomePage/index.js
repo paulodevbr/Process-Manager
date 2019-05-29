@@ -12,7 +12,7 @@ import {createStructuredSelector} from 'reselect';
 
 import {useInjectReducer} from 'utils/injectReducer';
 import {useInjectSaga} from 'utils/injectSaga';
-import {loadList} from './actions';
+import {deleteObject, loadList} from './actions';
 import {makeSelectObjects} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -26,12 +26,13 @@ import ObjectForm from "../../components/ObjectForm";
 
 const key = 'home';
 
-export function HomePage({ user,
+export function HomePage({ login,
                            objects,
                            loading,
                            error,
                            repos,
                            loadListFunc,
+                           onDeleteObject,
                          }) {
   useInjectReducer({key, reducer});
   useInjectSaga({key, saga});
@@ -48,18 +49,18 @@ export function HomePage({ user,
 
   return (
     <div>
-      <PresentationHome user={user}/>
-      <ObjectForm user={user}/>
+      <PresentationHome login={login}/>
+      <ObjectForm login={login}/>
       {objects &&
       (<ListGroup style={{marginTop:16}}>{
         objects.map(obj => {
-          switch(user.userGroup){
+          switch(login.userGroup){
             case ADMIN:
-              return (<ListGroup.Item key={obj.email}><UserItem user={obj} /></ListGroup.Item>);
+              return (<ListGroup.Item key={obj.email}><UserItem user={obj} login={login} onDelete={onDeleteObject} /></ListGroup.Item>);
             case TRIADOR:
-              return (<ListGroup.Item key={obj.email}><UserItem user={obj} /></ListGroup.Item>);
+              return <div></div>;
             case FINALIZADOR:
-              return (<ListGroup.Item key={obj.email}><UserItem user={obj} /></ListGroup.Item>);
+              return <div></div>;
             default:
               return (<div></div>);
           }
@@ -77,16 +78,18 @@ HomePage.propTypes = {
   loading: PropTypes.bool,
   loadListFunc: PropTypes.func,
   objects: PropTypes.array,
+  onDeleteObject: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   objects: makeSelectObjects(),
-  user: makeSelectLoginPage(),
+  login: makeSelectLoginPage(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     loadListFunc: () => dispatch(loadList()),
+    onDeleteObject: (id) => () => dispatch(deleteObject(id)),
     dispatch,
   };
 }

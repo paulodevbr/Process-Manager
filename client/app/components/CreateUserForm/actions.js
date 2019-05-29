@@ -1,4 +1,4 @@
-import {CHANGE_EMAIL, CHANGE_NAME, CHANGE_PASSWORD, CHANGE_USERGROUP, CREATE_USER} from "./constants";
+import {CHANGE_EMAIL, CHANGE_NAME, CHANGE_PASSWORD, CHANGE_USERGROUP, CLEAR_USER_FORM, CREATE_USER} from "./constants";
 
 export function changeName(name) {
   return {
@@ -22,15 +22,16 @@ export function changePassword(password) {
   };
 }
 
-export function changeUserGroup(userGroup) {
+export function changeUserGroup(id, userGroup) {
   return {
     type: CHANGE_USERGROUP,
+    id,
     userGroup,
   };
 }
 
-export function createuser() {
+export function clearUserForm() {
   return {
-    type: CREATE_USER,
+    type: CLEAR_USER_FORM,
   };
 }

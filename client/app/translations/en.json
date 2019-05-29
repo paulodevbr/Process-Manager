@@ -41,7 +41,7 @@
   "app.containers.HomePage.admin.details": "Here you can create, edit, update and delete users",
   "app.containers.HomePage.admin.button": "Create user",
   "app.containers.HomePage.triador.title": "Manage Processes",
-  "app.containers.HomePage.triador.details": "Here you can create, edit, update and delete processes",
+  "app.containers.HomePage.triador.details": "Here you can create and delete processes",
   "app.containers.HomePage.triador.button": "Create Process",
   "app.containers.HomePage.finalizador.title": "Manage your reports",
   "app.containers.HomePage.finalizador.details": "Here you can view pending process and manage reports"

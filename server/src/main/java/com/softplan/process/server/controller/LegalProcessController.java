@@ -1,5 +1,6 @@
 package com.softplan.process.server.controller;
 
+import com.softplan.process.server.dto.LegalProcessCompactDTO;
 import com.softplan.process.server.dto.ProcessDTO;
 import com.softplan.process.server.exception.LegalProcessNotFoundException;
 import com.softplan.process.server.model.LegalProcess;
@@ -19,9 +20,9 @@ public class LegalProcessController {
     @Autowired
     private LegalProcessService service;
 
-    @RequestMapping( method = RequestMethod.GET)
-    public List<ProcessDTO> getAllProcess() {
-        return new ArrayList<ProcessDTO>();
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<LegalProcessCompactDTO> getAll() {
+        return this.service.getAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

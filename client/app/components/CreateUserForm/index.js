@@ -22,6 +22,7 @@ import {
 import {changeEmail, changeName, changePassword, changeUserGroup} from "./actions";
 import {connect} from "react-redux";
 import {compose} from "redux";
+import {createObject} from "../../containers/HomePage/actions";
 
 const key = 'userForm';
 
@@ -31,27 +32,33 @@ function CreateUserForm({
                           onChangeEmail,
                           onChangePassword,
                           onChangeUserGroup,
+                          onCreateObject,
                         }) {
-  const userGroupList = [ADMIN, TRIADOR, FINALIZADOR];
+  const userGroupList = [
+    {id: 1, name: ADMIN},
+    {id: 2, name: TRIADOR},
+    {id: 3, name: FINALIZADOR}];
 
   useInjectReducer({key, reducer});
+
+  const { name, email, password } = userForm;
 
   return (
     <div>
       <Row>
         <Col sm={12} md={6}>
           <label><FormattedMessage {...messages.nameLabel} /></label>
-          <FormControlIntl type="text" onChange={onChangeName} details={messages.nameDescription}/>
+          <FormControlIntl type="text" value={name} onChange={onChangeName} details={messages.nameDescription}/>
         </Col>
         <Col sm={12} md={6}>
           <label><FormattedMessage {...messages.emailLabel} /></label>
-          <FormControlIntl type="email" onChange={onChangeEmail} details={messages.emailDescription}/>
+          <FormControlIntl type="email" value={email} onChange={onChangeEmail} details={messages.emailDescription}/>
         </Col>
       </Row>
       <Row>
         <Col sm={12} md={6}>
           <label><FormattedMessage {...messages.passwordLabel} /></label>
-          <FormControlIntl type="password" onChange={onChangePassword} details={messages.passwordDescription}/>
+          <FormControlIntl type="password" value={password} onChange={onChangePassword} details={messages.passwordDescription}/>
         </Col>
         <Col sm={12} md={6}>
           <Dropdown style={{marginTop:32}}>
@@ -61,7 +68,7 @@ function CreateUserForm({
 
             <Dropdown.Menu>
               {userGroupList.map(group =>
-                <Dropdown.Item key={group} eventKey={group} onClick={onChangeUserGroup}>{group}</Dropdown.Item>
+                <Dropdown.Item key={group.id} eventKey={group.id} onClick={onChangeUserGroup(group.id)}>{group.name}</Dropdown.Item>
               )}
             </Dropdown.Menu>
           </Dropdown>
@@ -71,7 +78,7 @@ function CreateUserForm({
       <Row>
         <Col>
           <InputGroup>
-            <Button variant="primary">Create user</Button>
+            <Button variant="primary" onClick={onCreateObject}>Create user</Button>
           </InputGroup>
         </Col>
       </Row>
@@ -85,6 +92,7 @@ CreateUserForm.propTypes = {
   onChangeEmail: PropTypes.func,
   onChangePassword: PropTypes.func,
   onChangeUserGroup: PropTypes.func,
+  onCreateObject: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -93,6 +101,9 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
+    onCreateObject: () => {
+      return dispatch(createObject());
+    },
     onChangeName: evt => {
       if (evt && evt.target)
         return dispatch(changeName(evt.target.value))
@@ -105,9 +116,9 @@ function mapDispatchToProps(dispatch) {
       if (evt && evt.target)
         return dispatch(changePassword(evt.target.value))
     },
-    onChangeUserGroup: evt => {
+    onChangeUserGroup: (id) => evt => {
       if (evt && evt.target && evt.target.text)
-        return dispatch(changeUserGroup(evt.target.text))
+        return dispatch(changeUserGroup(id, evt.target.text))
     },
     dispatch,
   };

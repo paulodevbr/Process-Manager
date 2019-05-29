@@ -1,6 +1,7 @@
 package com.softplan.process.server.controller;
 
 import com.softplan.process.server.dto.ProcessDTO;
+import com.softplan.process.server.dto.UserDTO;
 import com.softplan.process.server.exception.UserNotFoundException;
 import com.softplan.process.server.model.User;
 import com.softplan.process.server.service.UserService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
@@ -21,16 +23,15 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    @PreAuthorize("hasUserGroup('ADMIN')")
-    public List<User> getAll() {
-        return this.service.getAll();
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public ResponseEntity<List<UserDTO>> getAll() {
+        return new ResponseEntity<>(this.service.getAll(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
 //    @PostAuthorize("returnObject.getBody().getEmail() == authentication.principal.username")
-    public  ResponseEntity<User> getByEmail(@PathVariable String email) {
-        ResponseEntity<User> response;
+    public  ResponseEntity<UserDTO> getByEmail(@PathVariable String email) {
+        ResponseEntity<UserDTO> response;
         try{
             response = new ResponseEntity<>(this.service.getByEmail(email), HttpStatus.OK);
         } catch(UserNotFoundException e){
@@ -52,8 +53,13 @@ public class UserController {
         return response;
     }
 
-    @RequestMapping(value = "/group/{group}", method = RequestMethod.GET)
-    public List<User> getAllByGroup(@PathVariable String group) {
-        return this.service.getAllByGroup(group);
+    @RequestMapping( method = RequestMethod.POST)
+    public UserDTO create(@RequestBody UserDTO user) {
+        return new UserDTO(this.service.create(user));
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void create(@PathVariable long id) {
+        this.service.delete(id);
     }
 }

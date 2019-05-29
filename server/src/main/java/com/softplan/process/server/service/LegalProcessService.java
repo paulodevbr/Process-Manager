@@ -1,15 +1,23 @@
 package com.softplan.process.server.service;
 
+import com.softplan.process.server.dto.LegalProcessCompactDTO;
 import com.softplan.process.server.exception.LegalProcessNotFoundException;
 import com.softplan.process.server.model.LegalProcess;
 import com.softplan.process.server.repository.LegalProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class LegalProcessService {
     @Autowired
     private LegalProcessRepository repository;
+
+    public List<LegalProcessCompactDTO> getAll(){
+        return repository.findAll().stream().map(LegalProcessCompactDTO::new).collect(Collectors.toList());
+    }
 
     public LegalProcess getById(final long id){
        return this.repository

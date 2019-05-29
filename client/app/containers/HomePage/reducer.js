@@ -8,7 +8,15 @@
  */
 
 import produce from 'immer';
-import {HIDE_USER_FORM, LOAD_LIST, LOAD_LIST_SUCCESS, SHOW_USER_FORM} from './constants';
+import {
+  CREATE_OBJECT,
+  CREATE_OBJECT_SUCCESS,
+  DELETE_OBJECT,
+  HIDE_USER_FORM,
+  LOAD_LIST,
+  LOAD_LIST_SUCCESS,
+  SHOW_USER_FORM
+} from './constants';
 
 // The initial state of the App
 export const initialState = {
@@ -22,7 +30,6 @@ const homeReducer = (state = initialState, action) =>
     switch (action.type) {
       case LOAD_LIST:
       case LOAD_LIST_SUCCESS:
-        // Delete prefixed '@' from the github username
         draft.objects = action.objects;
         break;
       case SHOW_USER_FORM:
@@ -31,6 +38,16 @@ const homeReducer = (state = initialState, action) =>
       case HIDE_USER_FORM:
         draft.isCreatingUser = false;
         break;
+      case CREATE_OBJECT_SUCCESS:
+        draft.objects.push(action.object);
+        break;
+      case DELETE_OBJECT:
+        const obj = draft.objects.find(o => o.id === action.id);
+        const index = draft.objects.indexOf(obj);
+
+        draft.objects.splice(index, 1);
+        break;
+
     }
   });
 

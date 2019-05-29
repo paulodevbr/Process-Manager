@@ -15,6 +15,9 @@ export const LOAD_LIST = 'process-manager/home/LOAD_LIST';
 export const LOAD_LIST_SUCCESS = 'process-manager/home/LOAD_LIST_SUCCESS';
 export const SHOW_USER_FORM = 'process-manager/home/SHOW_USER_FORM';
 export const HIDE_USER_FORM = 'process-manager/home/HIDE_USER_FORM';
+export const CREATE_OBJECT =  'process-manager/home/CREATE_OBJECT';
+export const CREATE_OBJECT_SUCCESS =  'process-manager/home/CREATE_OBJECT_SUCCESS';
+export const DELETE_OBJECT =  'process-manager/home/DELETE_OBJECT';
 
 
 export const ADMIN = 'ADMIN';

@@ -11,18 +11,22 @@ import messages from './messages';
 import {Badge, Button, ButtonGroup, Col, Row} from "react-bootstrap";
 import {ADMIN, FINALIZADOR, TRIADOR} from "../../containers/HomePage/constants";
 
-function UserItem({user, login}) {
+function UserItem({user, login, onDelete}) {
 
   const CustomBadge = () => {
-    switch(user.userGroup.name){
+    switch(user.userGroup){
       case ADMIN:
-        return (<Badge variant="dark">{user.userGroup.name}</Badge>);
+        return (<Badge variant="dark">{user.userGroup}</Badge>);
       case TRIADOR:
-        return (<Badge variant="secondary">{user.userGroup.name}</Badge>);
+        return (<Badge variant="info">{user.userGroup}</Badge>);
       case FINALIZADOR:
-        return (<Badge variant="success">{user.userGroup.name}</Badge>);
+        return (<Badge variant="success">{user.userGroup}</Badge>);
     }
   };
+
+  const ButtonDelete = () => user.email === login.email
+    ? <Button variant="light" disabled><i className="fas fa-trash" style={{color: "red"}}/></Button>
+    : <Button variant="light" onClick={onDelete(user.id)}><i className="fas fa-trash" style={{color: "red"}}/></Button>
 
   return (
     <div>
@@ -34,7 +38,7 @@ function UserItem({user, login}) {
         <Col md={2} xs={4}>
           <ButtonGroup>
             <Button variant="light"><i className="fas fa-edit" style={{color: "dark"}}/></Button>
-            <Button variant="light"><i className="fas fa-trash" style={{color: "red"}}/></Button>
+           <ButtonDelete/>
           </ButtonGroup></Col>
       </Row>
     </div>

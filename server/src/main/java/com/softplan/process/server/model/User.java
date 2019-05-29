@@ -36,7 +36,7 @@ public class User {
     private LocalDateTime dateOfCreation;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @Getter
     @Setter
     private UserGroup userGroup;

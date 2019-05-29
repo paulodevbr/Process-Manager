@@ -8,7 +8,7 @@ const PageDetails = ({user}) => {
     case ADMIN:
       return <FormattedMessage {...messages.adminDetails}/>;
     case TRIADOR:
-      return <FormattedMessage {...nessages.triadorDetails}/>;
+      return <FormattedMessage {...messages.triadorDetails}/>;
     case FINALIZADOR:
       return <FormattedMessage {...messages.finalizadorDetails} />
     default:

@@ -8,6 +8,7 @@ import {DEFAULT_ACTION, AUTH_FAILED, LOGIN_SUCCESS, REDIRECT} from './constants'
 import {CHANGE_EMAIL, CHANGE_PASSWORD} from "../LoginPage/constants";
 
 export const initialState = {
+  id: "",
   name: "",
   email: "",
   password:"",
@@ -29,11 +30,13 @@ const loginPageReducer = (state = initialState, action) =>
         draft.password = action.password;
         break;
       case LOGIN_SUCCESS:
+        draft.id = action.userData.id;
         draft.name = action.userData.name;
         draft.email = action.userData.email;
         draft.password = action.userData.password;
         draft.token = action.userData.token;
-        draft.userGroup = action.userData.userGroup.name;
+        draft.userGroup = action.userData.userGroup;
+        draft.userGroupId = action.userData.userGroupId;
         break;
       case AUTH_FAILED:
         draft.authFailed = true;
