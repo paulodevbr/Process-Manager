@@ -21,14 +21,14 @@ function Header({login}) {
           <Navbar.Brand><FormattedMessage {...messages.appName} /></Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-nav-login" />
           {login.authenticated && (
-            <Navbar.Collapse id="navbar-nav-login" className="justify-content-end">
-              <Navbar.Text style={{fontSize: 12}}>
-                Signed in as: {login.name}
-              </Navbar.Text>
-              <Nav>
-                <Nav.Link href="/login">Logout</Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
+              <Navbar.Collapse id="navbar-nav-login" className="justify-content-end">
+                <Navbar.Text style={{fontSize: 12}}>
+                  {login.name}
+                </Navbar.Text>
+                <Nav>
+                  <Nav.Link href="/login">Logout</Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
           )
           }
         </Container>

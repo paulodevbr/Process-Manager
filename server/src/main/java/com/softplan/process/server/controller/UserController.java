@@ -26,6 +26,12 @@ public class UserController {
         this.service = service;
     }
 
+    @GetMapping(value = "/list/{userGroup}")
+    public ResponseEntity<List<UserDTO>> getAllByUserGroup(@PathVariable String userGroup) {
+        return new ResponseEntity<>(this.service.getAllByUserGroup(userGroup), HttpStatus.OK);
+    }
+
+
     @GetMapping(value = "/list")
     public ResponseEntity<List<UserDTO>> getAll() {
         return new ResponseEntity<>(this.service.getAll(), HttpStatus.OK);
@@ -62,7 +68,7 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public void create(@PathVariable long id) {
+    public void delete(@PathVariable long id) {
         this.service.delete(id);
     }
 }

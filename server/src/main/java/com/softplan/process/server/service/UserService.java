@@ -4,6 +4,7 @@ import com.softplan.process.server.dto.UserDTO;
 import com.softplan.process.server.exception.UserNotFoundException;
 import com.softplan.process.server.model.User;
 import com.softplan.process.server.model.UserGroup;
+import com.softplan.process.server.repository.UserGroupRepository;
 import com.softplan.process.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,20 +20,32 @@ public class UserService {
 
     private final UserRepository repository;
 
+    private final UserGroupRepository userGroupRepository;
+
     private final BCryptPasswordEncoder bcryptEncoder;
 
-    public UserService(UserRepository repository, BCryptPasswordEncoder bcryptEncoder) {
+    public UserService(UserRepository repository, BCryptPasswordEncoder bcryptEncoder, UserGroupRepository userGroupRepository) {
         this.repository = repository;
         this.bcryptEncoder = bcryptEncoder;
+        this.userGroupRepository = userGroupRepository;
+    }
+
+    public List<UserDTO> getAllByUserGroup(final String nameUserGroup){
+        UserGroup userGroup = this.userGroupRepository.findByName(nameUserGroup);
+
+        return this.repository.findAllByUserGroup(userGroup).stream()
+                .map(UserDTO::new)
+                .collect(Collectors.toList());
     }
 
     public List<UserDTO> getAll(){
-        return this.repository.findAll().stream().map(UserDTO::new).collect(Collectors.toList());
+        return this.repository.findAll().stream()
+                .map(UserDTO::new)
+                .collect(Collectors.toList());
     }
 
     public User getById(final long id){
-        return this.repository
-                .findById(id)
+        return this.repository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(" User with id " + id + "was not found"));
     }
 

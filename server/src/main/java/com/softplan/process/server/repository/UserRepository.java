@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
         User findByEmail(String email);
+        List<User> findAllByUserGroup(UserGroup userGroup);
 
         @Query("select distinct(u) from User u " +
                 " left join UserGroup ug " +

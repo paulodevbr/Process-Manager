@@ -63,7 +63,7 @@ function CreateUserForm({
         <Col sm={12} md={6}>
           <Dropdown style={{marginTop:32}}>
             <Dropdown.Toggle block variant="outline-secondary" id="dropdown-basic">
-              {userForm && userForm.userGroup ? userForm.userGroup : 'Select the user group'}
+              {userForm && userForm.userGroup ? userForm.userGroup : 'Selecione o grupo do usuário'}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -78,7 +78,7 @@ function CreateUserForm({
       <Row>
         <Col>
           <InputGroup>
-            <Button variant="success" onClick={onCreateObject}>Create user</Button>
+            <Button variant="success" onClick={onCreateObject}>Criar usuário</Button>
           </InputGroup>
         </Col>
       </Row>

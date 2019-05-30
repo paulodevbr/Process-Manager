@@ -31,7 +31,6 @@ public class LegalProcessCompactDTO {
     public LegalProcessCompactDTO(final LegalProcess process){
         this.id = process.getId();
         this.title = process.getTitle();
-        this.author = process.getAuthor().getName();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 

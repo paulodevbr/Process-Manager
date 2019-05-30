@@ -6,6 +6,19 @@ let headers = {
   'Content-Type': 'application/json',
 };
 
+export const getAllByUserGroup = (action) => {
+
+  headers = {...headers, 'Authorization': `Bearer ${action.token}`};
+
+  console.log(action);
+  console.log(headers);
+
+  return fetch(`${SERVER_USERS}/list/${action.userGroup}`, {
+    method: 'GET',
+    headers,
+  }).then(res => res.json());
+};
+
 export const getAll = (action) => () => {
 
   headers = {...headers, 'Authorization': `Bearer ${action.token}`};

@@ -28,7 +28,7 @@ public class LegalProcessController {
         return this.service.getAll();
     }
 
-    @PostMapping(value = "/")
+    @PostMapping
     public LegalProcess create(@RequestBody LegalProcess process) {
         return this.service.create(process);
     }
@@ -44,5 +44,10 @@ public class LegalProcessController {
         }
 
         return response;
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable long id) {
+        this.service.delete(id);
     }
 }

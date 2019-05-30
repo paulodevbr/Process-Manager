@@ -4,33 +4,45 @@
  *
  */
 
-import {CHANGE_DESCRIPTION, CHANGE_TITLE, DEFAULT_ACTION} from './constants';
 import {
-  CHANGE_EMAIL,
-  CHANGE_NAME,
-  CHANGE_PASSWORD,
-  CHANGE_USERGROUP,
-  CLEAR_USER_FORM
-} from "../../components/CreateUserForm/constants";
+  CHANGE_DESCRIPTION,
+  CHANGE_TITLE,
+  CHANGE_USERS,
+  LOAD_USERS_LIST,
+  LOAD_USERS_LIST_SUCCESS
+} from './constants';
 
-export function changeTitle(name) {
+export function changeTitle(title) {
   return {
     type: CHANGE_TITLE,
-    name,
+    title,
   };
 }
 
 
-export function changeDescription(email) {
+export function changeDescription(description) {
   return {
     type: CHANGE_DESCRIPTION,
-    email,
+    description,
   };
 }
 
 export function changeUsers(password) {
   return {
-    type: CHANGE_PASSWORD,
+    type: CHANGE_USERS,
     password,
+  };
+}
+
+export function loadUsersList() {
+  return {
+    type: LOAD_USERS_LIST,
+  };
+}
+
+export function loadUsersListSuccess(usersList) {
+  return {
+    type: LOAD_USERS_LIST_SUCCESS,
+    usersList
   };
 }

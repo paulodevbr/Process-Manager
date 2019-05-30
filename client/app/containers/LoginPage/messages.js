@@ -38,4 +38,12 @@ export default defineMessages({
     id: `${scope}.submit.button`,
     defaultMessage: 'Submit',
   },
+  presentationTitle: {
+    id: `${scope}.presentation.title`,
+    defaultMessage: 'Login',
+  },
+  presentationDetail: {
+    id: `${scope}.presentation.detail`,
+    defaultMessage: 'Enter your email and password to start working!',
+  }
 });

@@ -4,15 +4,28 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import {CHANGE_DESCRIPTION, CHANGE_TITLE, LOAD_USERS_LIST, LOAD_USERS_LIST_SUCCESS} from './constants';
 
-export const initialState = {};
+export const initialState = {
+  title: '',
+  description: '',
+  users: null,
+  usersList: null,
+};
 
 /* eslint-disable default-case, no-param-reassign */
 const processPageReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+  produce(state, (draft) => {
     switch (action.type) {
-      case DEFAULT_ACTION:
+      case CHANGE_TITLE:
+        draft.title = action.title;
+        break;
+      case CHANGE_DESCRIPTION:
+        draft.description = action.description;
+        break;
+      case LOAD_USERS_LIST:
+      case LOAD_USERS_LIST_SUCCESS:
+        draft.usersList = action.usersList;
         break;
     }
   });

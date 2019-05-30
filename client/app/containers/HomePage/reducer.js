@@ -30,7 +30,10 @@ const homeReducer = (state = initialState, action) =>
     switch (action.type) {
       case LOAD_LIST:
       case LOAD_LIST_SUCCESS:
-        draft.objects = action.objects;
+        if(action.objects){
+          draft.objects = action.objects;
+        }
+
         break;
       case SHOW_USER_FORM:
         draft.isCreatingUser = true;
@@ -39,6 +42,10 @@ const homeReducer = (state = initialState, action) =>
         draft.isCreatingUser = false;
         break;
       case CREATE_OBJECT_SUCCESS:
+        if(!draft.objects){
+          draft.objects = [];
+        }
+
         draft.objects.push(action.object);
         break;
       case DELETE_OBJECT:

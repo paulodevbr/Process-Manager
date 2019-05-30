@@ -35,6 +35,8 @@
   "app.components.input.email.description": "example@gmail.com",
   "app.components.input.password.label": "Password",
   "app.components.input.password.description": "Enter the password",
+  "app.containers.LoginPage.presentation.title": "Login",
+  "app.containers.LoginPage.presentation.detail": "Enter your email and password to start working!",
   "app.containers.LoginPage.submit.button": "Submit",
   "app.containers.LoginPage.wrongAuth": "Invalid email or password",
   "app.containers.HomePage.admin.title": "Manage Users",

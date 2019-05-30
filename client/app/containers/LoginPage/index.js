@@ -38,13 +38,12 @@ export function LoginPage({ authFailed, authFailedMessage, authenticated, onChan
   if(authenticated){
     return <Redirect to='/' />
   }
-  //TODO: correct jumbotron with internationalization
   return (
     <div>
       <Jumbotron>
-        <h1>Login</h1>
+        <h1><FormattedMessage {...messages.presentationTitle} /></h1>
         <p>
-          Enter your email and password to start working!
+          <FormattedMessage {...messages.presentationDetail} />
         </p>
       </Jumbotron>
 

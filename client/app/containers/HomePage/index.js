@@ -18,7 +18,7 @@ import reducer from './reducer';
 import saga from './saga';
 import {ListGroup} from "react-bootstrap";
 import UserItem from "../../components/UserItem";
-import ProcessItem from "../../components/ProcessItem";
+import ProcessItem from "../../components/ProcessItem/Loadable";
 import makeSelectLoginPage from "../LoginPage/selectors";
 import {ADMIN, FINALIZADOR, TRIADOR} from "./constants";
 import PresentationHome from "../../components/PresentationHome";
@@ -57,11 +57,11 @@ export function HomePage({ login,
         objects.map(obj => {
           switch(login.userGroup){
             case ADMIN:
-              return (<ListGroup.Item key={obj.id}><UserItem user={obj} login={login} onDelete={onDeleteObject} /></ListGroup.Item>);
+              return (<ListGroup.Item key={obj.email}><UserItem user={obj} login={login} onDelete={onDeleteObject} /></ListGroup.Item>);
             case TRIADOR:
-              return (<ListGroup.Item key={obj.id}><ProcessItem processs={obj} login={login} onDelete={onDeleteObject} /></ListGroup.Item>);
+              return (<ListGroup.Item key={obj.title}><ProcessItem process={obj} login={login} onDelete={onDeleteObject} /></ListGroup.Item>);
             case FINALIZADOR:
-              return (<ListGroup.Item key={obj.id}><ProcessItem processs={obj} login={login} onDelete={onDeleteObject} /></ListGroup.Item>);
+              return (<ListGroup.Item key={obj.id}><ProcessItem process={obj} login={login} onDelete={onDeleteObject} /></ListGroup.Item>);
             default:
               return (<div></div>);
           }

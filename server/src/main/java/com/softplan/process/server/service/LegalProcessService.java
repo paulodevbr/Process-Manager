@@ -7,6 +7,7 @@ import com.softplan.process.server.repository.LegalProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,7 @@ public class LegalProcessService {
     }
 
     public LegalProcess create(LegalProcess process){
+        process.setDateOfCreation(LocalDateTime.now());
         return this.repository.save(process);
     }
 
@@ -30,5 +32,9 @@ public class LegalProcessService {
        return this.repository
                .findById(id)
                .orElseThrow(() -> new LegalProcessNotFoundException("Legal process with id "+ id + " was not found"));
+    }
+
+    public void delete(final long id){
+        this.repository.deleteById(id);
     }
 }
