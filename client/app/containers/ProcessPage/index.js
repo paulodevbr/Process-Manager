@@ -6,23 +6,20 @@
 
 import React, {memo} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {FormattedMessage} from 'react-intl';
-import {createStructuredSelector} from 'reselect';
 import {compose} from 'redux';
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
+import reducer from './reducer';
+import saga from './saga';
+import makeSelectProcessPage from './selectors';
 
 import {useInjectSaga} from 'utils/injectSaga';
 import {useInjectReducer} from 'utils/injectReducer';
-import makeSelectProcessPage from './selectors';
-import reducer from './reducer';
-import saga, {loadUsers} from './saga';
-import messages from './messages';
-import {Form, InputGroup, Jumbotron} from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+
 import {Link} from "react-router-dom";
-import FormControlIntl from "../../components/FormControlIntl";
 import {createObject} from "../HomePage/actions";
 import {changeDescription, changeTitle, loadUsersList} from "./actions";
+import {Form, InputGroup, Jumbotron, Button, Alert} from "react-bootstrap";
 
 export function ProcessPage({
                               processForm,
@@ -34,9 +31,9 @@ export function ProcessPage({
   useInjectReducer({key: 'processPage', reducer});
   useInjectSaga({key: 'processPage', saga});
 
-  const { title, description, users, usersList} = processForm;
+  const {title, description, users, usersList, createdProcess} = processForm;
 
-  if(!usersList){
+  if (!usersList) {
     loadUsersListFunc();
   }
 
@@ -50,9 +47,13 @@ export function ProcessPage({
         <Link to="/"><Button variant="success">Ver todos os processos</Button></Link>
       </Jumbotron>
 
+      <Alert show={createdProcess} variant='success'>
+        Processo criado com sucesso!
+      </Alert>
+
       <label>Titulo</label>
       <InputGroup>
-        <Form.Control type="text" onChange={onChangeTitle} value={title} />
+        <Form.Control type="text" onChange={onChangeTitle} value={title}/>
       </InputGroup>
 
       <Form.Group controlId="exampleForm.ControlSelect2">
@@ -71,7 +72,7 @@ export function ProcessPage({
 
       <label>Descrição</label>
       <InputGroup>
-        <Form.Control as="textarea" rows={4} onChange={onChangeDescription} value={description} />
+        <Form.Control as="textarea" rows={4} onChange={onChangeDescription} value={description}/>
       </InputGroup>
       <InputGroup>
         <Button style={{margin: 16}} variant="primary" type="submit" onClick={onCreateObject}>
@@ -84,6 +85,11 @@ export function ProcessPage({
 
 ProcessPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  processForm: PropTypes.object.isRequired,
+  onCreateObject: PropTypes.func.isRequired,
+  onChangeTitle: PropTypes.func.isRequired,
+  onChangeDescription:  PropTypes.func.isRequired,
+  loadUsersListFunc: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

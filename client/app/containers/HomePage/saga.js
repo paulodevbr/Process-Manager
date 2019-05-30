@@ -1,17 +1,22 @@
 /**
- * Gets the repositories of the user from Github
+ * Gets the object acording to the userGroup
+ * If admin get users,
+ * if triador get processes
  */
 
 import {call, put, select, takeLatest, all} from 'redux-saga/effects';
-import {reposLoaded, repoLoadingError} from 'containers/App/actions';
+import { repoLoadingError} from 'containers/App/actions';
 import * as UserApi from '../../utils/userApi';
 import * as ProcessApi from '../../utils/processApi';
-import {ADMIN, CREATE_OBJECT, DELETE_OBJECT, FINALIZADOR, LOAD_LIST, TRIADOR} from "./constants";
-import {createObjectSuccess, loadList, loadListSuccess} from "./actions";
+import {createObjectSuccess, loadListSuccess} from "./actions";
 import makeSelectLoginPage from "../LoginPage/selectors";
 import makeSelectUserForm from "../../components/CreateUserForm/selectors";
 import {clearUserForm} from "../../components/CreateUserForm/actions";
 import makeSelectProcessPage from "../ProcessPage/selectors";
+
+import {ADMIN, CREATE_OBJECT, DELETE_OBJECT, FINALIZADOR, LOAD_LIST, TRIADOR} from "./constants";
+import {redirect} from "../LoginPage/actions";
+import {clearProcessForm} from "../ProcessPage/actions";
 
 export function* loadListObjects() {
   try {
@@ -29,7 +34,8 @@ export function* loadListObjects() {
         objects = yield call(ProcessApi.getAll, {token});
         break;
       case FINALIZADOR:
-        objects = yield call();
+        //TODO: implement load processes to create report
+        // objects = yield call();
         break;
     }
 
@@ -53,24 +59,30 @@ export function* createObject(action) {
       case ADMIN:
         const userForm = yield select(makeSelectUserForm());
         newObject = yield call(UserApi.create({user: userForm, token}), '');
+
+        yield put(createObjectSuccess(newObject));
+        yield put(clearUserForm());
         break;
 
       case TRIADOR:
         const processForm = yield select(makeSelectProcessPage());
         const process = {title: processForm.title, description: processForm.description};
         newObject = yield call(ProcessApi.create, {process, token});
+
+        yield put(createObjectSuccess(newObject));
+        yield put(clearProcessForm());
         break;
+
       case FINALIZADOR:
+        //TODO: implement create report
         break;
-      //TODO: implement
+
     }
 
-    yield put(createObjectSuccess(newObject));
-
-    yield put(clearUserForm());
 
   } catch (err) {
     console.log(err);
+    yield put(clearProcessForm());
     yield put(repoLoadingError(err));
   }
 }
@@ -89,7 +101,7 @@ export function* deleteObject(action) {
       case TRIADOR:
         yield call(ProcessApi.remove, action);
       case FINALIZADOR:
-      //TODO: implement
+      //TODO: implement delete report
     }
 
   } catch (err) {

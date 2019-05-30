@@ -5,24 +5,22 @@
  */
 
 import React, {memo} from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import {FormattedMessage} from 'react-intl';
-import messages from './messages';
-import {Button, Col, Dropdown, InputGroup, Row} from "react-bootstrap";
 import FormControlIntl from "../FormControlIntl";
-import {ADMIN, FINALIZADOR, TRIADOR} from "../../containers/HomePage/constants";
+import messages from './messages';
+import {FormattedMessage} from 'react-intl';
+
 import {useInjectReducer} from "../../utils/injectReducer";
 import reducer from "./reducer";
 import {createStructuredSelector} from "reselect";
-import {
-  makeSelectUserForm
-} from "./selectors";
+import {makeSelectUserForm} from "./selectors";
 import {changeEmail, changeName, changePassword, changeUserGroup} from "./actions";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {createObject} from "../../containers/HomePage/actions";
+
+import {ADMIN, FINALIZADOR, TRIADOR} from "../../containers/HomePage/constants";
+import {Button, Col, Dropdown, InputGroup, Row} from "react-bootstrap";
 
 const key = 'userForm';
 

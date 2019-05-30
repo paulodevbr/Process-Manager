@@ -5,11 +5,11 @@
  */
 
 import styled from 'styled-components';
-import React, { memo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {Badge, Button, ButtonGroup, Col, Row} from "react-bootstrap";
+import { Button, ButtonGroup, Col, Row} from "react-bootstrap";
 
-function ProcessItem({process, login, onDelete}) {
+function ProcessItem({process, onDelete}) {
 
   return (
     <div>
@@ -36,7 +36,8 @@ const ProcessCreationText = styled.p`
 
 
 ProcessItem.propTypes = {
-  process: PropTypes.object.isRequired
+  process: PropTypes.object.isRequired,
+  onDelete: PropTypes.func,
 };
 
 export default ProcessItem;

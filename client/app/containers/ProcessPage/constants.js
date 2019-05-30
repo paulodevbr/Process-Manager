@@ -9,4 +9,4 @@ export const CHANGE_DESCRIPTION = 'process-manager/process-page/CHANGE_DESCRIPTI
 export const LOAD_USERS_LIST = 'process-manager/process-page/LOAD_USERS_LIST';
 export const LOAD_USERS_LIST_SUCCESS = 'process-manager/process-page/LOAD_USERS_LIST_SUCCESS';
 export const CHANGE_USERS = 'process-manager/process-page/USERS';
-export const CLEAR_USER_FORM = 'process-manager/process-page/CLEAR_USER_FORM';
+export const CLEAR_PROCESS_FORM = 'process-manager/process-page/CLEAR_PROCESS_FORM';

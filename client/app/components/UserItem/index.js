@@ -4,10 +4,8 @@
  *
  */
 import styled from 'styled-components';
-import React, { memo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import {Badge, Button, ButtonGroup, Col, Row} from "react-bootstrap";
 import {ADMIN, FINALIZADOR, TRIADOR} from "../../containers/HomePage/constants";
 
@@ -36,14 +34,12 @@ function UserItem({user, login, onDelete}) {
         <Col md={{span: 4, order: 3}} xs={{span: 8, order: 3}}><EmailText>{user.email}</EmailText></Col>
         <Col md={{span: 2, order: 4}} xs={{span: 4, order: 4}}>
           <ButtonGroup>
-            <Button variant="light"><i className="fas fa-edit" style={{color: "dark"}}/></Button>
+            {/*TODO: implement edit user*/}
+            {/*<Button variant="light"><i className="fas fa-edit" style={{color: "dark"}}/></Button>*/}
             <ButtonDelete/>
           </ButtonGroup></Col>
       </Row>
       <Row>
-        {/*<Col md={2}>*/}
-        {/*  <CustomBadge/>*/}
-        {/*</Col>*/}
 
       </Row>
     </div>
@@ -57,7 +53,9 @@ const EmailText = styled.p`
 
 
 UserItem.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  login: PropTypes.object.isRequired,
+  onDelete: PropTypes.func,
 };
 
 export default UserItem;

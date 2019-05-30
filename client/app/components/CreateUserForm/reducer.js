@@ -14,19 +14,24 @@ export const initialState = {
 const homeReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
+
       case CHANGE_NAME:
         draft.name = action.name;
         break;
+
       case CHANGE_PASSWORD:
         draft.password = action.password;
         break;
+
       case CHANGE_EMAIL:
         draft.email = action.email;
         break;
+
       case CHANGE_USERGROUP:
         draft.userGroupId = action.id;
         draft.userGroup = action.userGroup;
         break;
+
       case CLEAR_USER_FORM:
         draft.name= '';
         draft.email= '';

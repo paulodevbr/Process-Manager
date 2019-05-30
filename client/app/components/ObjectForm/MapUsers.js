@@ -1,5 +1,4 @@
 import React from 'react';
-import {ADMIN} from "../../containers/HomePage/constants";
 import {FormattedMessage} from "react-intl";
 import messages from "./messages";
 import CreateUserForm from "../CreateUserForm";

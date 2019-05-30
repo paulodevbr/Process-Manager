@@ -6,24 +6,23 @@
 
 import React, {memo} from 'react';
 import PropTypes from 'prop-types';
+import reducer from './reducer';
+import saga from './saga';
+import PresentationHome from "../../components/PresentationHome";
+import ObjectForm from "../../components/ObjectForm";
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {createStructuredSelector} from 'reselect';
-
 import {useInjectReducer} from 'utils/injectReducer';
 import {useInjectSaga} from 'utils/injectSaga';
-import {deleteObject, loadList} from './actions';
+import makeSelectLoginPage from "../LoginPage/selectors";
 import {makeSelectObjects} from './selectors';
-import reducer from './reducer';
-import saga from './saga';
 import {ListGroup} from "react-bootstrap";
 import UserItem from "../../components/UserItem";
 import ProcessItem from "../../components/ProcessItem/Loadable";
-import makeSelectLoginPage from "../LoginPage/selectors";
 import {ADMIN, FINALIZADOR, TRIADOR} from "./constants";
-import PresentationHome from "../../components/PresentationHome";
-import CreateUserForm from "../../components/CreateUserForm";
-import ObjectForm from "../../components/ObjectForm";
+import {deleteObject, loadList} from './actions';
+
 
 const key = 'home';
 

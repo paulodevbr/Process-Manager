@@ -7,7 +7,7 @@
 import {
   CHANGE_DESCRIPTION,
   CHANGE_TITLE,
-  CHANGE_USERS,
+  CHANGE_USERS, CLEAR_PROCESS_FORM,
   LOAD_USERS_LIST,
   LOAD_USERS_LIST_SUCCESS
 } from './constants';
@@ -45,4 +45,10 @@ export function loadUsersListSuccess(usersList) {
     type: LOAD_USERS_LIST_SUCCESS,
     usersList
   };
+}
+
+export function clearProcessForm(){
+  return {
+    type: CLEAR_PROCESS_FORM,
+  }
 }

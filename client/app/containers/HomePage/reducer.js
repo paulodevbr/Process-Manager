@@ -9,7 +9,6 @@
 
 import produce from 'immer';
 import {
-  CREATE_OBJECT,
   CREATE_OBJECT_SUCCESS,
   DELETE_OBJECT,
   HIDE_USER_FORM,

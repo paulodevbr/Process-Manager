@@ -8,10 +8,6 @@ import {initialState} from './reducer';
 const selectUserFormDomain = state => state.userForm || initialState;
 
 /**
- * Other specific selectors
- */
-
-/**
  * Default selector used by LoginPage
  */
 
