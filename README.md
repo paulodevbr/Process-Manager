@@ -1,57 +1,57 @@
 Process Manager
 ======================
-Process manager é um desafio proposto pela softplan para a vaga de [implementador fullstack](https://github.com/provas-softplan/implementador-fullstack)
 
-Configuração
+Process manager is a challenge proposed by Softplan, to apply for position of [Fullstack Developer](https://github.com/provas-softplan/implementador-fullstack)
+
+Setup
 ---------------------
 
-Para executar o projeto, é necessário instalar as seguintes ferramentas:
+Install the following tools, they are required to run the project:
 
 * [Gradle](https://gradle.org/)
 * [NPM](https://www.npmjs.com/)
 
-Executando o projeto
+Running the project
 ---------------------
 
-Primeiramente deve-se instalar todas as dependências. Na pasta raiz do projeto, execute na linha de comando:
+Install all dependencies. In project root, run the command bellow: 
 
 `gradle build -x test`
 
-Para executar o **backend**:
+Run the **backend**:
 
 `gradle bootRun`
 
-Para executar o **front-end**:
+Run the **front-end**:
 
 `cd client && npm start`
 
-Tudo pronto! Agora a aplicação está rodando
+Everything is ready, now the aplication is up and running 🚀
 
-Acesso
+Acess
 ------------
-A aplicação pode ser acessada neste [link](http://localhost:3000)
+The application can be accessed in [link](http://localhost:3000)
 
-As credenciais de administrador são:
+The admin credentials are:
 
 * email: admin@softplan.com.br 
 * senha: admin
 
-Estrutura 
+Structure 
 -------------
 ### Front-end
 * **local:** /client
 * **Principal Recnologia:** React
 * **Outras tecnologias:** 
-    - [**Redux:**](https://reactjs.org/) o projeto tem um grande escopo, logo o redux facilita na manipulação de dados entre componentes
-    - [**Immer:**](https://github.com/immerjs/immer) facilita na manipulação de dados dentro de um reducer, e ainda mantendo a imutabilidade. É utilizado dentro dos `reducer.js`
-    - [**Redux-saga**](https://redux-saga.js.org/) facilita ao lidar com tarefas assíncronas, é utizado nas `saga.js`
-    - [**React bootstrap**](https://react-bootstrap.github.io/) possui componentes de interface prontos assim como o bootstrap comum, porém prontos para serem usados no React
-    - [**React boilerplate**](https://github.com/react-boilerplate/react-boilerplate) é um template em React para projetos robustos, possui diversos frameworks pré-configurados e um gerador de componentes para melhorar a velocidade do desenvolvimento 
+    - [**Redux:**](https://reactjs.org/) the project has many requirements, so the redux improve the management of data between components
+    - [**Immer:**](https://github.com/immerjs/immer) makes data manipulation inside a reducer easier, and it has immutability. It is utilized inside `reducer.js` files
+    - [**Redux-saga**](https://redux-saga.js.org/) is good to deal with async tasks, it is used inside `saga.js` files
+    - [**React bootstrap**](https://react-bootstrap.github.io/) has components ready to use.
+    - [**React boilerplate**](https://github.com/react-boilerplate/react-boilerplate) is a React project template for big projects, it has many pre-configured frameworks and a component generator to improve development speed.
     
 ### Back-end
 * **local:** /server
 * **Principal Recnologia:** Springboot
 * **Outras tecnologias:** 
-    - [**Hibernate:**](https://hibernate.org/) o hibernate melhora a velocidade ao implementar operações mais simples em bancos de dados
-
+    - [**Hibernate:**](https://hibernate.org/) improve the development speed when developing simple operations in databases
 
