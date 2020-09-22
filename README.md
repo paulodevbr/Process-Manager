@@ -28,14 +28,14 @@ Run the **front-end**:
 
 Everything is ready, now the aplication is up and running 🚀
 
-Acess
+Access
 ------------
 The application can be accessed in [link](http://localhost:3000)
 
 The admin credentials are:
 
 * email: admin@softplan.com.br 
-* senha: admin
+* password: admin
 
 Structure 
 -------------
