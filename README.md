@@ -39,19 +39,19 @@ The admin credentials are:
 
 Structure 
 -------------
-### Front-end
-* **local:** /client
-* **Principal Recnologia:** React
-* **Outras tecnologias:** 
+### Frontend
+* **folder:** /client
+* **Main Technology:** React
+* **Other Technologies:** 
     - [**Redux:**](https://reactjs.org/) the project has many requirements, so the redux improve the management of data between components
     - [**Immer:**](https://github.com/immerjs/immer) makes data manipulation inside a reducer easier, and it has immutability. It is utilized inside `reducer.js` files
     - [**Redux-saga**](https://redux-saga.js.org/) is good to deal with async tasks, it is used inside `saga.js` files
     - [**React bootstrap**](https://react-bootstrap.github.io/) has components ready to use.
     - [**React boilerplate**](https://github.com/react-boilerplate/react-boilerplate) is a React project template for big projects, it has many pre-configured frameworks and a component generator to improve development speed.
     
-### Back-end
-* **local:** /server
-* **Principal Recnologia:** Springboot
-* **Outras tecnologias:** 
+### Backend
+* **folder:** /server
+* **Main Technology:** Springboot
+* **Other Technologies:** 
     - [**Hibernate:**](https://hibernate.org/) improve the development speed when developing simple operations in databases
 
